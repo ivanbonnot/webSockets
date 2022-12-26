@@ -9,11 +9,13 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="icon" type="image/png" sizes="32x32"
         href="//res.cloudinary.com/hdsqazxtw/image/upload/v1558445734/favicon-32x32_fy92aq.png">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/index.js"></script>
     <title>APIRest</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container jumbotron">
         <form action="/api/productos" method="post">
             <h2>Ingresar nuevo producto</h2>
             <div class="border">
@@ -31,6 +33,21 @@
             <button type="submit" id="vista" class="btn">Ver productos</button>
         </form>
 
+        <div class="chat">
+            <h1>Chat</h1>
+
+            <input type="text" id="inputUsername" class="form-control w-75 my-2 mr-2" placeholder="Ingresá tu email">
+
+            <div id="mensajes"></div>
+
+            <form id="formPublicarMensaje" class="form-inline" autocomplete="off">
+                <div class="form-group">
+                    <input disabled id="inputMensaje" type="text" class="form-control my-2 mr-2"
+                        placeholder="Ingresá tu mensaje">
+                    <button disabled id="btnEnviar" type="submit" class="btn btn-primary my-2">Enviar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 

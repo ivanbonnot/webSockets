@@ -94,3 +94,9 @@ h2 {
     background-color: #9f68e0;
     cursor: pointer;
 }
+
+.chat {
+    margin: 10px 0px 0px 0px;
+    padding: 20px;
+    background-color: aliceblue;
+}

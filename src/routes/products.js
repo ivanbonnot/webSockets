@@ -1,12 +1,12 @@
 const { Router } = require('express')
 const router = new Router()
 
-const Contenedor = require('../contenedor.js');
-const productos = new Contenedor('productos.txt')
+const productos = require('../contenedor.js');
 
 
 router.get('/', async (req, response) => {
 
+    // response.sendFile('index.html', { root: __dirname })
     const allProducts = await productos.getAll()
    
     response.render("lista", {
