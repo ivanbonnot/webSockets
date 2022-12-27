@@ -1,8 +1,9 @@
+const formAgregarProducto = document.getElementById('agregarProducto')
+const formPublicarMensaje = document.getElementById('formPublicarMensaje')
 const socket = io.connect();
 
 //------------------------------------------------------------------------------------
 
-const formAgregarProducto = document.getElementById('formAgregarProducto')
 formAgregarProducto.addEventListener('submit', e => {
     e.preventDefault()
     const producto = {
@@ -14,6 +15,8 @@ formAgregarProducto.addEventListener('submit', e => {
     formAgregarProducto.reset()
 })
 
+
+
 socket.on('productos', productos => {
     makeHtmlTable(productos).then(html => {
         document.getElementById('productos').innerHTML = html
@@ -21,7 +24,7 @@ socket.on('productos', productos => {
 });
 
 function makeHtmlTable(productos) {
-    return fetch('plantillas/tabla-productos.hbs')
+    return fetch('lista.hbs')
         .then(respuesta => respuesta.text())
         .then(plantilla => {
             const template = Handlebars.compile(plantilla);
@@ -36,11 +39,10 @@ const inputUsername = document.getElementById('inputUsername')
 const inputMensaje = document.getElementById('inputMensaje')
 const btnEnviar = document.getElementById('btnEnviar')
 
-const formPublicarMensaje = document.getElementById('formPublicarMensaje')
 formPublicarMensaje.addEventListener('submit', e => {
     e.preventDefault()
 
-    const mensaje = { autor: inputUsername.value, texto: inputMensaje.value }
+    const mensaje = { user: inputUsername.value, mensaje: inputMensaje.value }
     socket.emit('nuevoMensaje', mensaje);
     formPublicarMensaje.reset()
     inputMensaje.focus()
@@ -56,9 +58,9 @@ function makeHtmlList(mensajes) {
     return mensajes.map(mensaje => {
         return (`
             <div>
-                <b style="color:blue;">${mensaje.autor}</b>
-                [<span style="color:brown;">${mensaje.fyh}</span>] :
-                <i style="color:green;">${mensaje.texto}</i>
+                <b style="color:blue;">${mensaje.user}</b>
+                [<span style="color:brown;">${mensaje.date}</span>] :
+                <i style="color:green;">${mensaje.mensaje}</i>
             </div>
         `)
     }).join(" ");

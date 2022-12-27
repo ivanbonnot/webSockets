@@ -25,15 +25,15 @@ app.use(express.json())
 app.use(express.static('./public'))
 
 //HBS
-app.engine(
-    "hbs",
-    handlebars.engine({
-        extname: ".hbs",
-        defaultLayout: 'main.hbs',
-    })
-);
+// app.engine(
+//     "hbs",
+//     handlebars.engine({
+//         extname: ".hbs",
+//         defaultLayout: 'main.hbs',
+//     })
+// );
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, 'views'));
+app.set("views", path.resolve(__dirname, '../public'));
 
 //Starting the server
 httpServer.listen(8080, ()=> {
