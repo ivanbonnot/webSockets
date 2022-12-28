@@ -3,9 +3,6 @@ const express = require('express');
 const { Server: HTTPServer } = require('http')
 const { Server: IOServer } = require('socket.io')
 
-const handlebars = require('express-handlebars')
-const path = require('path')
-
 const app = express();
 
 const httpServer = new HTTPServer(app)
@@ -24,24 +21,12 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('./public'))
 
-//HBS
-// app.engine(
-//     "hbs",
-//     handlebars.engine({
-//         extname: ".hbs",
-//         defaultLayout: 'main.hbs',
-//     })
-// );
-app.set("view engine", "hbs");
-app.set("views", path.resolve(__dirname, '../public'));
-
 //Starting the server
 httpServer.listen(8080, ()=> {
     console.log('Server On')
 })
 
 //websocket
-
 io.on('connection', async socket => {
     console.log('Nuevo cliente conectado!');
 
@@ -64,10 +49,6 @@ io.on('connection', async socket => {
         io.sockets.emit('mensajes', await chat.getAll());
     })
 });
-
-//Routes
-app.use('/api/productos', require('./routes/products'))
-
 
 
 

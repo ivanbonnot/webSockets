@@ -24,7 +24,7 @@ socket.on('productos', productos => {
 });
 
 function makeHtmlTable(productos) {
-    return fetch('lista.hbs')
+    return fetch('./views/lista.hbs')
         .then(respuesta => respuesta.text())
         .then(plantilla => {
             const template = Handlebars.compile(plantilla);
@@ -49,7 +49,6 @@ formPublicarMensaje.addEventListener('submit', e => {
 })
 
 socket.on('mensajes', mensajes => {
-    console.log(mensajes);
     const html = makeHtmlList(mensajes)
     document.getElementById('mensajes').innerHTML = html;
 })
