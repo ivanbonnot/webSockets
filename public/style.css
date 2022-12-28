@@ -16,10 +16,6 @@ body {
     padding: 20px;
 }
 
-.jumbotron {
-    min-height: 100vh;
-}
-
 .container {
     height: auto;
     width: 75vw;
